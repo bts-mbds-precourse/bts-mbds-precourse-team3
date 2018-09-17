@@ -29,14 +29,14 @@ S - Southampton, Q = Queenstown).
 https://www.kaggle.com/c/titanic/data 
 
 # Files and usage
-You should explain all the files that you include, as well as how to use them.
+
 
 train.csv: This file contains the core of the project. 
 
 
 **Usage**: 
 
-    python main.py
+    train.py
     
 # Examples
 If convenient, show some examples of the results you obtained during the project. 
