@@ -10,7 +10,7 @@ You can provide a table with the names and the contact of all of the participant
 | ---- | ---- |
 | Jordi Hurtado | hurtadosabatejordi@gmail.com |
 | Mahmoud Belhaj Ahmed  | mahmoud.belhajahmed@gmail.com  |
-
+| Benjamin Wein | benjaminjameswein@gmail.com
 It is important to add your contact name as other people could use your code and may require any help.
 
 
