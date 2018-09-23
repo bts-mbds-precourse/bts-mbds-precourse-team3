@@ -1,0 +1,36 @@
+"""
+This is the code to get a pie comparing Age against total deaths. 
+1: New variables: alive and dead, when df['Survived'] equals 1 and 0 respectively.
+2: New variables according to the age range, but take into account only 'dead' people.
+3: Set an array of all lengths or sums
+4. Get percents, labels, explode.
+5. Plot the pie and the legend, considering labels, percents and counts
+
+"""
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+is_alive = df['Survived'] == 1
+alive = df[is_alive]
+is_dead=df['Survived'] ==0
+dead =df[is_dead]
+
+Infants = dead[(1 <= dead['Age']) & (dead['Age'] <= 5)]
+Children = dead[(6 <= dead['Age']) & (dead['Age'] <= 12)]
+Youth = dead[(13 <= dead['Age']) & (dead['Age'] <= 24)]
+Young_adults = dead[(25 <= dead['Age']) & (dead['Age'] <= 39)]
+Adults = dead[(40 <= dead['Age']) & (dead['Age'] <= 60)]
+Elderly = dead[(61 <= dead['Age']) & (dead['Age'] <= 100)]
+Agelist = np.array([len(Infants), len(Children), len(Youth), len(Young_adults), len(Adults), len(Elderly)])
+
+#print(Agelist)
+
+percents =  (Agelist / sum(Agelist))*100
+
+labels = ['Infants', 'Children', 'Youth', 'Young Adults', 'Adults', 'Elderly']
+explode = (0, 0, 0.1, 0, 0, 0)
+plt.pie(Agelist, explode=explode, shadow= True)
+plt.axis('equal')
+plt.legend( loc = 'best', labels=['%s, %1.1f %% --> %d' % (l, s, count) for l, s, count in zip(labels, percents, Agelist)])
+plt.show()
