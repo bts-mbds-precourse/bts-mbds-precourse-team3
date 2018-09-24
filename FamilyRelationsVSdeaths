@@ -1,0 +1,54 @@
+"""
+This graph will allow us to see the the number of passenger family relations, that are included in variables: SibSp and Parch. 
+It's still unfinished as the code shown below will output a graph considering all passengers and  we are more 
+interested in considering only the ones who died, to see the impact of the tragedy for each passenger.
+"""
+
+
+is_noS = df['SibSp'] == 0
+NoSibsp = df[is_noS]
+is_oneS =df['SibSp'] == 1
+OneSibsp =df[is_oneS]
+is_twoS = df['SibSp'] == 2
+TwoSibsp = df[is_twoS]
+is_threeS =df['SibSp'] == 3
+ThreeSibsp =df[is_threeS]
+is_fourS = df['SibSp'] == 4
+FourSibsp = df[is_fourS]
+is_fiveS =df['SibSp'] == 5
+FiveSibsp =df[is_fiveS]
+
+
+is_noP = df['Parch'] == 0
+NoParch = df[is_noP]
+print(NoParch)
+is_oneP =df['Parch'] == 1
+OneParch =df[is_oneP]
+is_twoP = df['Parch'] == 2
+TwoParch = df[is_twoP]
+is_threeP =df['Parch'] == 3
+ThreeParch =df[is_threeP]
+is_fourP = df['Parch'] == 4
+FourParch = df[is_fourP]
+is_fiveP =df['Parch'] == 5
+FiveParch =df[is_fiveP]
+
+
+a = [len(NoSibsp), len(OneSibsp), len(TwoSibsp), len(ThreeSibsp), len(FourSibsp), len(FiveSibsp)]
+b = [len(NoParch), len(OneParch), len(TwoParch), len(ThreeParch), len(FourParch), len(FiveParch)]
+
+x = np.arange(6)
+
+fig, ax = plt.subplots()
+p1 = ax.bar(x, a, width=0.3,color='r')
+p2 = ax.bar(x+0.3, b, width=0.3,color='y')
+
+ax.legend((p1[0], p2[0]), ('Sibling/Spouse', 'Parent/Child'))
+plt.xlabel('Number of Family relations')
+plt.ylabel('Count')
+ax.set_xticks(x + 0.3/ 2)
+ax.set_xticklabels((0, 1, 2, 3, 4, 5))
+ax.set_title('FAMILY RELATIONS VS DEATHS')
+
+plt.show()
+
