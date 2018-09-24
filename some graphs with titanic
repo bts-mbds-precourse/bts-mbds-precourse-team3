@@ -142,6 +142,93 @@ titanic_df = titanic_df.join(embark_dummies_titanic)
 
 titanic_df.drop(['Embarked'], axis=1,inplace=True)
 
+---------------------------------------------------------------------------------------------
+
+survived = df["Survived"]
+total = survived.shape[0]
+result_survived = pd.value_counts(survived)
+print (result_survived)
+labels_survived = 'Survived', 'Dead'
+size_survived = [result_survived[1]/total, result_survived[0]/total]
+explode_survived = [0.1, 0]
+plt.figure(figsize = (5,5))
+plt.pie(size_survived, explode = explode_survived, labels = labels_survived, center = (0, 0), labeldistance=1.1, autopct='%1.2f%%', pctdistance=0.5, shadow=True)
+plt.title("Survived")
+plt.show()
 
 
 
+
+passenger_class = df["Pclass"]
+total = survived.shape[0]
+result_class = pd.value_counts(passenger_class)
+labels_class = 'Class 1', 'Class 2', 'Class 3'
+size_class = [result_class[1]/total, result_class[2]/total, result_class[3]/total]
+explode_class = [0.1, 0.1, 0.1]
+plt.figure(figsize = (5,4.5))
+plt.pie(size_class, explode = explode_class, labels = labels_class, center = (0, 0), labeldistance=1.1, autopct='%1.2f%%', pctdistance=0.5, shadow=True)
+plt.title("Passenger class")
+plt.show()
+
+
+
+passenger_sex = df["Sex"]
+total = survived.shape[0]
+result_sex = pd.value_counts(passenger_sex)
+labels_sex = 'Male', 'Female'
+size_sex = [result_sex['male']/total, result_sex['female']/total]
+explode_sex = [0.1, 0]
+plt.figure(figsize = (5,4.5))
+plt.pie(size_sex, explode = explode_sex, labels = labels_sex, center = (0, 0), labeldistance=1.1, autopct='%1.2f%%', pctdistance=0.5, shadow=True)
+plt.title("Sex")
+plt.show()
+
+
+
+
+
+sns.countplot("Sex", hue = "Survived", data = df)
+plt.show()
+
+
+
+
+sns.catplot(x = "Pclass", y = "Survived", hue = "Sex", data = df, height = 5, kind = "bar")
+plt.show()
+
+
+
+
+
+age = df["Age"]
+result_age = pd.value_counts(age)
+x = np.arange(0,90,0.1)
+#age.isnull().sum()
+age = age.dropna() # Delete "nan" recoards
+#print (age)
+plt.bar(x,result_age[x])
+plt.show()
+
+
+
+
+
+sns.violinplot(x = "Pclass", y = "Age", hue = "Survived", split = True, inner = "quartile",data = df)
+plt.show()
+
+
+
+
+
+sns.violinplot(x = "Sex", y = "Age", hue = "Survived", split = True, inner = "quart",data = df)
+plt.show()
+
+
+
+
+
+
+f, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 5), )
+sns.boxenplot(x = "Pclass", y = "Fare", color = "blue", scale = "linear", data = df, ax = ax1)
+sns.violinplot(x = "Pclass", y = "Fare", hue = "Survived", split = True, inner = "quart",data = df, ax = ax2)
+plt.show()
